@@ -6,90 +6,66 @@
 
 <?php $__env->startSection('script'); ?>
     <?php echo \Illuminate\View\Factory::parentPlaceholder('script'); ?>
-    <script src="<?php echo e(asset('static/js/jquery.waypoints.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
-    <script>
-        $(function(){
-            $('.cardList > li').waypoint(function(){
-                this.element.classList.add('show');
-            },{
-                offset: '70%'
-            });
-        });
-        $(window).scroll(function() {
-            bgEffect()
 
-        });
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <ul class="breadcrumb">
+        <li><a href="<?php echo e(url('/')); ?>">首頁</a></li>
 
-        function bgEffect(){
-            let top = document.scrollingElement.scrollTop; //触发滚动条，记录数值
-            let banner_height = $('.container-bg').height()-60;
-            let opacity = 1-top/banner_height;
-            $('.container-bg').css('opacity',opacity);
-            if(opacity<=0.6){
-                $('.page-title').css('color','rgba(0,0,0,'+top/banner_height+')');
-            }else{
-                $('.page-title').css('color','#fff');
-            }
-
-            if(($(window).scrollTop() + $(window).height()).toFixed(0) == $(document).height()){
-                $('.container-bg').css('opacity',0);
-            }
-
-
-        }
-    </script>
+        <li class="active">瘦身部落格</li>
+    </ul>
 <?php $__env->stopSection(); ?>
 
-
 <?php $__env->startSection('content'); ?>
-    <?php ($newsBg = app('cache.config')->get('page_news_back_img_pc')); ?>
-    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($newsBg): ?>
-    <div class="container-bg" style="background-image: url('<?php echo e(asset_upload($newsBg)); ?>')">
-    <?php else: ?>
-    <div class="container-bg">
-    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-        <p class="bg-text"><?php echo app('cache.config')->get('page_news_title'); ?></p>
-        <p class="beat"><i class="iconfont">&#xe784;</i></p>
-    </div>
-    <h1 class="page-title">瘦身專欄</h1>
-    <div class="news-wrap" data-track-section="news.list" data-track-section-view data-track-section-label="文章列表">
-        <ul class="breadcrumb">
-            <li><a href="<?php echo e(url('/')); ?>">首頁</a></li>
-            <li class="active">瘦身專欄</li>
-        </ul>
-        <ul class="cardList vertical">
+    <section class="section">
+        <div class="section-content wrapper">
 
-            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <li class="">
-                    <div class="item ">
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item->img): ?>
-                        <div class="Img"><a href="<?php echo e(url('news/'.$item->id)); ?>" data-track-section="news.list" data-track-name="news.list.item" data-observer="文章-<?php echo e($item->title); ?>"><img src="<?php echo e(asset('uploads/'.$item->img)); ?>" alt="<?php echo e($item->title); ?>" loading="lazy" decoding="async"></a></div>
-                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                        <div class="Txt">
-                            <div class="newsInfoIdxBox">
-                                <div class="newsDateBox">
-                                    <span class="day"><?php echo e($item->release_at->format('d')); ?></span>
-                                    <span class="ym"><?php echo e(substr($item->release_at->format('Y'),-2)); ?> <?php echo e($item->release_at->format('M')); ?></span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h3><a href="<?php echo e(url('news/'.$item->id)); ?>" data-track-section="news.list" data-track-name="news.list.title" data-observer="文章標題-<?php echo e($item->title); ?>"><?php echo e($item->title); ?></a></h3>
+            <h1 class="page-title">瘦身部落格</h1>
+            <div class="main">
+                <div class="news">
+                    <div class="news-section">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="item">
+                                <div class="img-wrapper"><a href="<?php echo e(url('news/'.$item->id)); ?>"><img src="<?php echo e(asset('uploads/'.$item->img)); ?>" alt="<?php echo e($item->img_alt?:$item->title); ?>" oncontextmenu="return false;"></a></div>
+                                <div class="info">
+                                    <p class="new-title"><a href="<?php echo e(url('news/'.$item->id)); ?>"><?php echo e($item->title); ?></a></p>
+                                    <p class="new-desc">
+                                        <?php echo e(\Illuminate\Support\Str::limit($item->brief?$item->brief:strip_tags($item->content),240)); ?>
+
+                                    </p>
+                                    <p class="go"><a class="go-btn" href="<?php echo e(url('news/'.$item->id)); ?>">閱讀全文 >></a></p>
                                 </div>
                             </div>
-                            <p class="ellipsis" style="overflow-wrap: break-word;">
-                                <?php echo e(\Illuminate\Support\Str::limit($item->brief?$item->brief:strip_tags($item->content),680)); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    </div>
+                    <?php echo $news->links(); ?>
 
-                            </p>
+                </div>
+
+                <div class="popularity">
+                    <div class="popularity-row">
+                        <div class="box-header">
+                            <a class="title" href="javascript:;">最新資訊</a>
+                        </div>
+                        <div class="popularity-product popularity-title-edition">
+
+                            <div class="list">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $newNews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="list-item">
+                                        <a class="main-color-hover" href="<?php echo e(url('news/'.$item->id)); ?>"><?php echo e($item->title); ?></a>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+
+
+                            </div>
                         </div>
                     </div>
-                </li>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+            </div>
 
-
-        </ul>
-
-        <?php echo e($news->links()); ?>
-
-    </div>
+        </div>
+    </section>
 
 <?php $__env->stopSection(); ?>
 

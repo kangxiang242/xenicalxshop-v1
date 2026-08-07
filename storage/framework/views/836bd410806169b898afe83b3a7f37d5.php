@@ -5,8 +5,7 @@
 
 <?php $__env->startSection('script'); ?>
     <?php echo \Illuminate\View\Factory::parentPlaceholder('script'); ?>
-    <script src="<?php echo e(asset('static/js/xie.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
-    <script src="<?php echo e(asset('static/js/api.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/api.js')); ?>"></script>
     <script>
 
         setInterval(function(){
@@ -40,53 +39,17 @@
             return true;
         }
 
-        bgHeight()
-        function bgHeight(){
-            $('.container-bg').css('height',$(window).height()-80);
-
-        }
-        window.onresize = function(){
-            bgHeight()
-        }
-
-        $(window).scroll(function() {
-            bgEffect()
-
-        });
-
-        function bgEffect(){
-            let top = document.scrollingElement.scrollTop; //触发滚动条，记录数值
-            let banner_height = $('.container-bg').height()-60;
-            let opacity = 1-top/banner_height;
-            $('.container-bg').css('opacity',opacity);
-            if(opacity<=0.6){
-                $('.page-title').css('color','rgba(0,0,0,'+top/banner_height+')');
-            }else{
-                $('.page-title').css('color','#fff');
-            }
-
-            if(($(window).scrollTop() + $(window).height()).toFixed(0) == $(document).height()){
-                $('.container-bg').css('opacity',0);
-            }
-
-
-
-        }
     </script>
 
 <?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('content'); ?>
-    <section class="check-container" data-track-section="order_check" data-track-section-view data-track-section-label="訂單追蹤">
-        <div class="container-bg" style="background-image: url('<?php echo e(asset_upload(app('cache.config')->get('page_check_back_img_pc'))); ?>')">
-            <p class="bg-text"><?php echo app('cache.config')->get('page_check_title'); ?></p>
-            <p class="beat"><i class="iconfont">&#xe784;</i></p>
-        </div>
+    <section class="check-container">
 
         <div class="check-wrap">
             <div class="page-main">
-                <h1 class="page-title">訂單追蹤</h1>
+                <h1 class="page-title">訂單查詢</h1>
             </div>
             <div class="check-main">
 
@@ -101,50 +64,52 @@
 
                         <div class="form-group">
                             <label>訂單行動電話：</label>
-                            <input class="form-control" type="tel" name="phone" placeholder="請輸入訂購時留下的電話號碼" maxlength="10">
+                            <input class="form-control" type="tel" name="phone" placeholder="請輸入訂購时留下的電話號碼">
                         </div>
                         <div class="form-group">
-                            <label>訂單電子信箱：</label>
-                            <input class="form-control" type="email" name="email" placeholder="請輸入訂購時留下的電子信箱">
+                            <label>訂單電子郵箱：</label>
+                            <input class="form-control" type="email" name="email" placeholder="請輸入聯絡你的電話號碼">
                         </div>
                         <div class="form-group">
                             <label>我不是機器人：</label>
                             <input class="form-control" type="text" name="captcha_code" placeholder="請輸入驗證碼">
-                            <div class="code"><img class="thumbnail captcha mt-3 mb-2" src="<?php echo e(captcha_src('flat')); ?>" onclick="this.src='/captcha/flat?'+Math.random()" title="點擊圖片重新獲取驗證碼" loading="lazy" decoding="async"></div>
+                            <div class="code"><img class="thumbnail captcha mt-3 mb-2" src="<?php echo e(captcha_src('flat')); ?>" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码"></div>
                         </div>
 
                         <div class="form-group">
-                            <button class="form-btn" type="submit" data-track-section="order_check" data-track-name="order_check.submit" data-observer="查單提交">確認送出</button>
+                            <button class="form-btn">確認送出</button>
                         </div>
                     </form>
                 </div>
-                
-                
-                <?php
-                    $qaList = json_decode(app('cache.config')->get('page_check_qa', '[]'), true);
-                ?>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($qaList): ?>
-                <div class="order-help">
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $qaList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <article class="order-help-card">
-                        <div class="order-help-icon">
-                            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                        </div>
-                        <h3><?php echo e($item['title'] ?? ''); ?></h3>
-                        <?php $lines = explode("\n", $item['content'] ?? ''); ?>
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($lines): ?>
-                        <ul>
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $lines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(trim($line)): ?>
-                            <li><?php echo e(trim($line)); ?></li>
-                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                        </ul>
-                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                    </article>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                <div class="foot">
+                    <div class="li">
+                        <p>如您想再次確認訂單，您可以</p>
+                        <p>· 通過上面輸入訂單中預留的聯繫電話以及電子信箱查詢您的訂單。</p>
+                    </div>
+
+                    <div class="li">
+                        <p>如果無法查詢結果，可能是由於以下原因</p>
+                        <p>· 輸入訂單中預留的聯繫電話或電子信箱有誤，請仔細檢查無誤後再次查詢</p>
+                        <p>· 系統生成訂單延遲，請稍候片刻後再次查詢</p>
+                        <p>· 網絡波動及其他外界影響導致當時沒有下單成功，請再次下單</p>
+                    </div>
+
+                    <div class="li">
+                        <p>物流狀態更新延遲</p>
+                        <p>我們收到您的訂單後，物流部門會收到您的信息，然後他們會處理您的訂單並將其整裝待發，最後將它
+                        們轉發給運輸公司，然後由運輸公司運送。由於此過程涉及內部和外部各方之間的多個協調步驟，因此物
+                        流狀態更新會有延遲。</p>
+                    </div>
+
+                    <div class="li">
+                        <p>派送和交貨時間</p>
+                        <p>目前，我們通過主要物流供應商提供運輸服務。我們在每週一到週六上班時間（台北時間上午 9:00 至 下午 18:00）處理所有訂單。</p>
+                        <p>我們的物流合作夥伴是黑貓宅急便以及7-ELEVEN便利店，可保證快速安全的交付。</p>
+                        <p>免責聲明：此處顯示的交貨時間可能有例外，具體取決於您所在的位置。即使是主要的物流供應商也沒有全面覆蓋，有時需要聘請分包商來處理他們的交付。</p>
+                    </div>
                 </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
             </div>
         </div>
     </section>

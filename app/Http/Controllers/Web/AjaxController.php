@@ -9,15 +9,5 @@ use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
-    public function switchLgbt(Request $request){
-        if($request->cate_id && $request->id){
-            $theme = Theme::where('cate_id',$request->cate_id)->first();
-            if($theme){
-                return LGBT::render($theme,$request->id);
-            }
 
-        }
-        return "";
-
-    }
 }

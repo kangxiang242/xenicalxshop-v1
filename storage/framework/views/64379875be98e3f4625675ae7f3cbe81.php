@@ -28,20 +28,20 @@
 <?php $__env->startSection('breadcrumb'); ?>
     <ul class="breadcrumb">
         <li><a href="<?php echo e(url('/')); ?>">首頁</a></li>
-        <li class="active">營養師解答</li>
+        <li class="active">常見Q&A</li>
     </ul>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <section class="fqa" data-track-section="faq" data-track-section-view data-track-section-label="營養師解答">
+    <section class="fqa">
         <div class="wrapper" style="">
             <div class="modal">
-                <h1 class="title">營養師解答</h1>
+                <h1 class="title">常見Q&A</h1>
             </div>
             <div class="fqa-body">
                 <div class="question">
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $faq; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="item question-show" data-faq-id="<?php echo e($loop->iteration); ?>">
+                    <div class="item question-show">
                         <p class="q-title">Q：<?php echo e($item->questions); ?></p>
                         <p class="q-desc"><?php echo e($item->answers); ?></p>
                         <i class="q-icon iconfont">&#xe775;</i>
