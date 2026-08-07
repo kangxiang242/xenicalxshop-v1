@@ -13,7 +13,7 @@
 }
 .page-main {
   text-align: center;
-  transform: translateY(-80px);
+  /*transform: translateY(-80px);*/
   height: 80px;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@
 }
 .page-main .page-title {
   font-weight: 500;
-  color: #fff;
+  color: #000;
   font-size: 32px;
 }
 .message-container .side {
@@ -113,6 +113,7 @@
   font-size: 16px;
 }
 .message-container .side .body .form-main .form-group .activate-btn {
-  background: #ff9b3e;
+  background: var(--main-color);
   color: #fff;
 }
+/*# sourceMappingURL=message.css.map */

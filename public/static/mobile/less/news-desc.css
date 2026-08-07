@@ -1,19 +1,10 @@
 .news-show-wrap {
   position: relative;
-  padding: 0 1.5rem;
   padding-bottom: 6rem;
 }
 .news-show-wrap .middle {
   position: relative;
   margin-top: 2rem;
-}
-.news-show-wrap .middle .line {
-  width: 0.1rem;
-  height: 100%;
-  background-color: #ccc;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 .news-show-wrap .middle .time {
   position: absolute;
@@ -30,21 +21,36 @@
   margin-bottom: 1rem;
 }
 .news-show-wrap .middle .fluid {
-  padding-left: 3.5rem;
   padding-bottom: 2rem;
 }
 .news-show-wrap .middle .fluid .news-title {
   font-size: 2.4rem;
   margin-bottom: 2rem;
+  text-align: center;
+}
+.news-show-wrap .middle .fluid .date {
+  font-size: 1.2rem;
+  color: #999;
+}
+.news-show-wrap .middle .fluid .line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: #ccc;
+  margin-bottom: 2rem;
+}
+.news-show-wrap .middle .fluid .news-content {
+  padding: 0 15px;
 }
 .news-show-wrap .middle .fluid .news-content img {
   width: 100%;
+  height: auto!important;
 }
 .news-show-wrap .middle .fluid .news-content span {
   font-family: "Microsoft YaHei" !important;
 }
 .news-show-wrap .article-footer {
   margin-top: 0.6rem;
+  padding: 0 1.5rem;
 }
 .news-show-wrap .article-footer .relatednav {
   display: flex;
@@ -122,3 +128,4 @@
 .news-show-wrap .article-footer .relatednav-next:hover .relatednav-title {
   color: #ff9b3e;
 }
+/*# sourceMappingURL=news-desc.css.map */

@@ -3,58 +3,19 @@
   position: relative;
   padding-bottom: 6rem;
 }
-.message-container .fixed-bg {
-  width: 100%;
-  height: 59rem;
-  background-image: url("/static/img/m_check_bg.png");
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-attachment: fixed;
-}
-.message-container .fixed-bg .mask {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.message-container .fixed-bg .slogan {
-  color: #fff;
-  position: absolute;
-  z-index: 1;
-  top: 20rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100%;
-  text-align: center;
-  font-size: 2.4rem;
-  padding: 0 3rem;
-  font-weight: 500;
-}
 .message-container .page-main {
   position: relative;
   width: 100%;
   padding-top: 1.4rem;
 }
 .message-container .page-main .page-head {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -7.8rem);
-  color: #fff;
+  color: #000;
 }
 .message-container .page-main .page-head .page-title {
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 500;
-}
-.message-container .page-main .page-head .radio {
-  width: 5.6rem;
-  height: 5.6rem;
-  border-radius: 50%;
-  border: 0.1rem solid #FFFFFF;
-  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 .message-container .page-main .quick {
   padding: 0 1.5rem;
@@ -147,7 +108,7 @@
   height: 4rem;
   background-color: #fff;
   border: 0.1rem solid #979797;
-  font-size: 16px;
+  font-size: 1.4rem;
   padding: 0 1.5rem;
   font-family: Microsoft YaHei;
 }
@@ -172,7 +133,7 @@
   margin-top: 1rem;
 }
 .message-container .page-main .form-pack .form-group .form-btn.activate-btn {
-  background: #ff9b3e;
+  background: var(--main-color);
 }
 .message-container .foot {
   margin-top: 4.3rem;
@@ -182,3 +143,4 @@
 .message-container .foot .li {
   margin-bottom: 2rem;
 }
+/*# sourceMappingURL=message.css.map */
