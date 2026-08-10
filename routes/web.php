@@ -36,6 +36,14 @@ Route::get('/area/road', [AreaController::class, 'getRoad']);
 Route::get('/area/shop', [AreaController::class, 'getShop']);
 Route::get('/get711', [AreaController::class, 'get711']);
 
+// Admin login routes (POST login handled by Admin\LoginController)
+Route::prefix(env('ADMIN_PATH', 'ami3-17drt4-6ne634russ'))->group(function () {
+    Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])
+        ->name('admin.login.submit');
+    Route::post('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])
+        ->name('filament.' . env('ADMIN_PATH', 'ami3-17drt4-6ne634russ') . '.auth.logout');
+});
+
 // Frontend routes with device redirect
 Route::middleware(['redirect.device'])->group(function () {
     Route::get('/', [IndexController::class, 'index']);
