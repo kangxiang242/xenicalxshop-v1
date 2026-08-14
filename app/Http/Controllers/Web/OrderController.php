@@ -64,7 +64,7 @@ class OrderController extends BaseController
             }
         }
 
-        return view('web.order.check');
+        return template('order.check');
     }
 
     /**
@@ -79,7 +79,7 @@ class OrderController extends BaseController
         if(!$order){
             abort(404);
         }
-        return view('web.order.show',compact('order'));
+        return template('order.show',compact('order'));
     }
 
     /**
@@ -96,7 +96,7 @@ class OrderController extends BaseController
         $form_token = md5(time());
         //将token存入session
         $request->session()->put('form_token',$form_token);
-        return view('web.order.checkout',compact('form_token','goods'));
+        return template('order.checkout',compact('form_token','goods'));
     }
 
 

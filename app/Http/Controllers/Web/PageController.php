@@ -59,7 +59,7 @@ class PageController extends BaseController
                     'user_agent'=>$request->userAgent()
                 ]);
 
-                return view('web.evaluate-result',compact('inter','goods'))->with('bmi',$request->bmi)->with('tdee',$request->tdee)->with('bmr',$request->bmr);
+                return template('evaluate-result',compact('inter','goods'))->with('bmi',$request->bmi)->with('tdee',$request->tdee)->with('bmr',$request->bmr);
 
             }
             return "";
@@ -67,25 +67,25 @@ class PageController extends BaseController
         }
 
 
-        return view('web.evaluate');
+        return template('evaluate');
     }
 
     public function faq(){
         $faq = app(FaqRepository::class)->all();
-        return view('web.faq',compact('faq'));
+        return template('faq',compact('faq'));
     }
 
     public function about(){
         $title = app('cache.config')->get('about_title');
         $content = app('cache.config')->get('about_content');
         $html_code = app('cache.config')->get('about_html_code');
-        return view('web.page',compact('title','content','html_code'));
+        return template('page',compact('title','content','html_code'));
     }
 
     public function guide(){
         $title = app('cache.config')->get('notes_buy_title');
         $content = app('cache.config')->get('notes_buy_content');
-        return view('web.page',compact('title','content'));
+        return template('page',compact('title','content'));
     }
 
 }

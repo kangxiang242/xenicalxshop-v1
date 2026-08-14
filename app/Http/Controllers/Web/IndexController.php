@@ -30,7 +30,7 @@ class IndexController extends Controller
 
         $news = $newRepository->top();
 
-        return view('web.index',compact('products','news','for_people'));
+        return template('index',compact('products','news','for_people'));
     }
 
 

@@ -12,7 +12,7 @@ class MessageController extends BaseController
 {
     public function index(){
         $faqs = Faq::orderBy('sort','desc')->limit(3)->get();
-        return view('web.message',compact('faqs'));
+        return template('message',compact('faqs'));
     }
 
     /**

@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index(ProductRepository $productRepository){
         $products = $productRepository->all();
 
-        return view('web.product.index',compact('products'));
+        return template('product.index',compact('products'));
     }
 
 
@@ -65,6 +65,6 @@ class ProductController extends Controller
         $discount = Product::where('status',1)->where('market_price','>',$product->market_price)->get();
 
 
-        return view('web.product.show',compact('product','goods_thumbnail','goods_delivery','goods_payment','goods_comments','goods_instructions','discount'));
+        return template('product.show',compact('product','goods_thumbnail','goods_delivery','goods_payment','goods_comments','goods_instructions','discount'));
     }
 }

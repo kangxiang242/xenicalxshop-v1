@@ -26,7 +26,7 @@ class NewsController extends Controller
 
         $newNews = $this->newRepository->newNews();
 
-        return view('web.news.index')->with('news',$news)->with('newNews',$newNews);
+        return template('news.index')->with('news',$news)->with('newNews',$newNews);
     }
 
 
@@ -38,7 +38,7 @@ class NewsController extends Controller
         $news->content = app(ArticleAnchorsHandler::class)->setAnchors($news->content,Anchor::get()->toArray());
         $news->content = app(ArticleAnchorsHandler::class)->relatedArticle($news->content,$id);
 
-        return view('web.news.show',compact('news','next','prev'));
+        return template('news.show',compact('news','next','prev'));
 
     }
 }
