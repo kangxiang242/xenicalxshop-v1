@@ -15,6 +15,10 @@
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/less/news-desc.css') }}?ver={{ config('app.asset_version') }}"/>
+
+    @if($news->custom_css)
+        <style>{!! $news->custom_css !!}</style>
+    @endif
     <style>
         iframe{
             background-color: #F0F0F0;
@@ -65,7 +69,7 @@
                         <span class="time" style="float: unset">{{ $news->release_at->format('Y-m-d') }}</span>
                     </div>
                     <div class="new-content">
-                        @if($news->html_file)
+                        @if($news->html_file && empty($news->content))
                             <iframe  id="external-frame" width="100%" style="min-height: 100vh" src="{{ asset_upload(str_replace('.zip','',$news->html_file).'/index.html') }}"  frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
                         @else
                             {!! $news->content !!}
